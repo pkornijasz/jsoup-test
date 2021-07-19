@@ -5,12 +5,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class JsoupTest {
 
     public static void main(String[] args) throws IOException {
 
-        final Document page = Jsoup.connect("https://www.benq.eu/pl-pl/projector/home-entertainment/x1300i/specifications.html").get();
+        String url = getUrl();
+
+        final Document page = Jsoup.connect(url).get();
 
 
         System.out.println();
@@ -21,5 +24,12 @@ public class JsoupTest {
             final String value = searchResult.getElementsByClass("col-md-8 col-sm-6 col-xs-6").text();
             System.out.println(key + " -> " + value);
         }
+    }
+
+    private static String getUrl() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Podaj adres strony ze specyfikacją:");
+        String url = scan.nextLine();
+        return url;
     }
 }
